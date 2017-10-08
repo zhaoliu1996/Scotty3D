@@ -7,6 +7,19 @@
 namespace CMU462 {
 
 VertexIter HalfedgeMesh::splitEdge(EdgeIter e0) {
+    // don't do anything if the edge is boundary or the poligons are not triangle
+    if (e0->isBoundary()){
+        //return ;
+    }
+    if (e0->halfedge()->face()->degree()!=3 || e0->halfedge()->twin()->face()->degree()!=3){
+        //return ;
+    }
+    
+    VertexIter m = newVertex();
+    m->position = e0->centroid();
+    
+    
+    
   // TODO: (meshEdit)
   // This method should split the given edge and return an iterator to the
   // newly inserted vertex. The halfedge of this vertex should point along
@@ -344,15 +357,22 @@ FaceIter HalfedgeMesh::bevelEdge(EdgeIter e) {
 }
 
 FaceIter HalfedgeMesh::bevelFace(FaceIter f) {
+    
+    //check if f is boundary then dont do anything
     if (f->isBoundary()) return f;
+    
+    // the degree of the face to bevel
     int n = f->degree();
     
+    // h is the face's haleedge
     HalfedgeIter h = f->halfedge();
     HalfedgeIter t = h;
-    vector<VertexIter>vv;
-    vector<EdgeIter>ve;
-    vector<FaceIter>vf;
-    vector<HalfedgeIter>vh;
+    
+    //adding new elements to corresponding vectors
+    vector<VertexIter> vv;
+    vector<EdgeIter> ve;
+    vector<FaceIter> vf;
+    vector<HalfedgeIter> vh;
     
     for (int i = 0; i<n; i++){
         vv.push_back(newVertex());
@@ -366,24 +386,27 @@ FaceIter HalfedgeMesh::bevelFace(FaceIter f) {
      
     }
     
-    
+    // assign pointers to those value
     for (int i = 0; i<n; i++){
         h = t;
-        cout<<"still working 1"<<endl;
+        
+        //for h: new face and new next
         h->face() = vf[i];
         vv[i]->halfedge() = vh[4*i+1];
         vv[i]->position = h->next()->vertex()->position;
         ve[2*i]->halfedge() = vh[4*i];
-        cout<<"still working2"<<endl;
+       
         ve[2*i+1]->halfedge() = vh[4*i+1];
-        vf[i]->halfedge() = h;
+        vf[i]->halfedge() = vh[4*i+1];
         cout<<"still working3"<<endl;
         vh[4*i]->setNeighbors(vh[4*i+1], vh[(4*i+7)%(4*n)], h->next()->vertex(), ve[2*i], vf[i]);
-        
+        cout<<4*i+1<<" "<<(4*i+7)%(4*n)<<endl;
         vh[4*i+1]->setNeighbors(vh[4*i+3], vh[4*i+2], vv[i], ve[2*i+1], vf[i]);
-        vh[4*i+2]->setNeighbors(vh[(4*i+6)%(4*n)], vh[4*i+1], vv[(i-1)%n], ve[2*i+1], f);
-        vh[4*i+3]->setNeighbors(h, vh[(4*i-4)%(4*n)], vv[(i-1)%n], ve[(2*i-2)%(2*n)], vf[i]);
         
+        vh[4*i+2]->setNeighbors(vh[(4*i+6)%(4*n)], vh[4*i+1], vv[(n+i-1)%n], ve[2*i+1], f);
+        
+        vh[4*i+3]->setNeighbors(h, vh[(4*n+4*i-4)%(4*n)], vv[(n+i-1)%n], ve[(2*n+2*i-2)%(2*n)], vf[i]);
+        cout<<(i-1)%n<<" "<<(4*i-4)%(4*n)<<endl;
         t = t->next();
         cout<<"still working4"<<endl;
         h->next() = vh[4*i];
@@ -430,8 +453,9 @@ void HalfedgeMesh::bevelFaceComputeNewPositions(
   //    position correponding to vertex i
   // }
   //
-    Vector3D norm = newHalfedges[0]->twin()->next()->twin()->face()->normal();
-    Vector3D cent = newHalfedges[0]->twin()->next()->twin()->face()->centroid();
+    FaceIter f = newHalfedges[0]->twin()->next()->twin()->face();
+    Vector3D norm = f->normal();
+    Vector3D cent = f->centroid();
     for( int i = 0; i < newHalfedges.size(); i++ )
     {
         Vector3D pi = originalVertexPositions[i]; // get the original vertex

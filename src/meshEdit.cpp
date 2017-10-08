@@ -568,13 +568,68 @@ void HalfedgeMesh::splitPolygons(vector<FaceIter>& fcs) {
 
 void HalfedgeMesh::splitPolygon(FaceIter f) {
     
-    cout<<"hehe"<<endl;
+    int n = f->degree();
+    
+    HalfedgeIter h0 = f->halfedge();
+    VertexIter v0 = h0->vertex();
+    HalfedgeIter t = h0;
+    HalfedgeIter temp = h0;
+    if (n == 3){return;}
+    
+    
+    
+    vector<HalfedgeIter> vh;
+    vector<FaceIter> vf;
+    vector<EdgeIter> ve;
+    
+    for (int i = 0; i<(n-3); i++){
+        //allocate space for new edges, faces and halfedges
+        vh.push_back(newHalfedge());
+        vh.push_back(newHalfedge());
+        vf.push_back(newFace());
+        ve.push_back(newEdge());
+    }
+    //set the initial face's halfedges to h0
+    f->halfedge() = h0;
+    
+    //the last h in polygon
+    while (t->next()!=h0) {
+        t = t->next();
+    }
+    
+    temp = h0->next()->next();
+    //for i==0
+    
+    vf[0]->halfedge() = vh[0];
+    ve[0]->halfedge() = vh[0];
+    vh[0]->setNeighbors(h0->next()->next(), vh[1], v0, ve[0], vf[0]);
+    vh[1]->setNeighbors(h0, vh[0], h0->next()->next()->vertex(), ve[0], f);
+    h0->next()->next()=vh[1];
+    t->next() = vh[0];
+    t->face() = vf[0];
+    h0->next()->next()->face() = vf[0];
+    
+    
+    for (int i = 1; i<(n-3); i++){
+        //allocate space for new edges, faces and halfedges
+        h0=temp;
+        vf[i]->halfedge() = vh[2*i];
+        ve[i]->halfedge() = vh[2*i];
+        vh[2*i]->setNeighbors(h0->next(), vh[2*i+1], v0, ve[i], vf[i]);
+        vh[2*i+1]->setNeighbors(vh[2*i-2], vh[2*i], h0->next()->vertex(), ve[i], vf[i-1]);
+        h0->next()->face() = vf[i];
+        t->face() = vf[i];
+        t->next() = vh[2*i];
+        temp = h0->next();
+        h0->next() = vh[2*i+1];
+    }
     
     
   // TODO: (meshedit) 
   // Triangulate a polygonal face
   
 }
+    
 
 EdgeRecord::EdgeRecord(EdgeIter& _edge) : edge(_edge) {
   // TODO: (meshEdit)

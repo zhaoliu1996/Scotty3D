@@ -4,20 +4,80 @@
 #include "mutablePriorityQueue.h"
 #include "error_dialog.h"
 
-namespace CMU462 {
 
+namespace CMU462 {
+    
 VertexIter HalfedgeMesh::splitEdge(EdgeIter e0) {
     // don't do anything if the edge is boundary or the poligons are not triangle
     if (e0->isBoundary()){
-        //return ;
+        return e0->halfedge()->vertex();
     }
     if (e0->halfedge()->face()->degree()!=3 || e0->halfedge()->twin()->face()->degree()!=3){
-        //return ;
+        return e0->halfedge()->vertex();
     }
-    
+    // allocate space for new things
+    vector<EdgeIter> ve;
+    vector<HalfedgeIter> vh;
+    vector<FaceIter> vf;
     VertexIter m = newVertex();
-    m->position = e0->centroid();
     
+    ve.push_back(newEdge());
+    ve.push_back(newEdge());
+    ve.push_back(newEdge());
+    vf.push_back(newFace());
+    vf.push_back(newFace());
+    vh.push_back(newHalfedge());
+    vh.push_back(newHalfedge());
+    vh.push_back(newHalfedge());
+    vh.push_back(newHalfedge());
+    vh.push_back(newHalfedge());
+    vh.push_back(newHalfedge());
+    
+    
+    // position for the new vertex
+    m->position = e0->centroid();
+   
+    // old halfedges
+    HalfedgeIter h0 = e0->halfedge();
+    HalfedgeIter h1 = h0->next();
+    HalfedgeIter h2 = h1->next();
+    HalfedgeIter h3 = h0->twin()->next();
+    HalfedgeIter h4 = h3->next();
+    
+    //assign halfedges for the new vertex and old vertex
+    m->halfedge() = h0;
+    h0->vertex()->halfedge() = h3;
+    
+    // assign halfedges for new faces and old faces
+    vf[0]->halfedge() = h3;
+    vf[1]->halfedge() = h2;
+    h0->face()->halfedge() = h0;
+    h0->twin()->face()->halfedge() = h0->twin();
+    h1->face() = h0->face();
+    h2->face() = vf[1];
+    h3->face() = vf[0];
+    h4->face() = h0->twin()->face();
+    
+    // assign halfedges for new edges
+    ve[0]->halfedge() = vh[0];
+    ve[1]->halfedge() = vh[2];
+    ve[2]->halfedge() = vh[4];
+
+    //reassign halfedges
+    h0->setNeighbors(h1, h0->twin(), m, e0, h0->face());
+    h0->twin()->next() = vh[0];
+    h1->next() = vh[5];
+    h2->next() = vh[3];
+    h4->next() = h0->twin();
+    h3->next() = vh[1];
+    vh[0]->setNeighbors(h4, vh[1], m, ve[0], h0->twin()->face());
+    vh[1]->setNeighbors(vh[2], vh[0], h4->vertex(), ve[0], vf[0]);
+    vh[2]->setNeighbors(h3, vh[3], m, ve[1], vf[0]);
+    vh[3]->setNeighbors(vh[4], vh[2], h3->vertex(), ve[1], vf[1]);
+    vh[4]->setNeighbors(h2, vh[5], m, ve[2], vf[1]);
+    vh[5]->setNeighbors(h0, vh[4], h2->vertex(), ve[2], h0->face());
+    
+    return m;
     
     
   // TODO: (meshEdit)
@@ -25,8 +85,7 @@ VertexIter HalfedgeMesh::splitEdge(EdgeIter e0) {
   // newly inserted vertex. The halfedge of this vertex should point along
   // the edge that was split, rather than the new edges.
 
-  showError("splitEdge() not implemented.");
-  return VertexIter();
+  
 }
 
 VertexIter HalfedgeMesh::collapseEdge(EdgeIter e) {
@@ -460,7 +519,7 @@ void HalfedgeMesh::bevelFaceComputeNewPositions(
     {
         Vector3D pi = originalVertexPositions[i]; // get the original vertex
         
-        newHalfedges[i]->vertex()->position = pi+norm*normalShift+(cent-pi)*tangentialInset;
+        newHalfedges[i]->vertex()->position = newHalfedges[i]->vertex()->position + norm*normalShift+(cent-pi)*tangentialInset;
     }
 }
 
@@ -508,9 +567,13 @@ void HalfedgeMesh::splitPolygons(vector<FaceIter>& fcs) {
 }
 
 void HalfedgeMesh::splitPolygon(FaceIter f) {
+    
+    cout<<"hehe"<<endl;
+    
+    
   // TODO: (meshedit) 
   // Triangulate a polygonal face
-  showError("splitPolygon() not implemented.");
+  
 }
 
 EdgeRecord::EdgeRecord(EdgeIter& _edge) : edge(_edge) {

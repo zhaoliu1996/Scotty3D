@@ -293,7 +293,23 @@ void HalfedgeMesh::computeLinearSubdivisionPositions() {
   // TODO For each face, assign the centroid (i.e., arithmetic mean)
   // of the original vertex positions to Face::newPosition.  Note
   // that in general, NOT all faces will be triangles!
-  showError("computeLinearSubdivisionPositions() not implemented.");
+    
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
+    {
+        v->newPosition = v->position;
+    }
+    
+    
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
+    {
+        e->newPosition = e->centroid();
+    }
+    
+    
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
+    {
+        f->newPosition = f->centroid();
+    }
 }
 
 /**
@@ -334,7 +350,26 @@ void HalfedgeMesh::assignSubdivisionIndices() {
   // TODO Iterate over edges, assigning values to Edge::index
 
   // TODO Iterate over faces, assigning values to Face::index
-  showError("assignSubdivisionIndices() not implemented.");
+    Index i = 0;
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
+    {
+        v->index = i;
+        i++;
+    }
+    
+    
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
+    {
+        e->index = i;
+        i++;
+    }
+    
+    
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
+    {
+        f->index = i;
+        i++;
+    }
 }
 
 /**
@@ -355,7 +390,23 @@ void HalfedgeMesh::buildSubdivisionVertexList(vector<Vector3D>& subDVertices) {
 
   // TODO Iterate over faces, assigning Face::newPosition to the appropriate
   // location in the new vertex list.
-  showError("buildSubdivisionVertexList() not implemented.");
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
+    {
+        subDVertices.push_back(v->newPosition);
+        
+    }
+    
+    
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
+    {
+        subDVertices.push_back(e->newPosition);
+    }
+    
+    
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
+    {
+        subDVertices.push_back(f->newPosition);
+    }
 }
 
 /**
@@ -388,7 +439,34 @@ void HalfedgeMesh::buildSubdivisionFaceList(vector<vector<Index> >& subDFaces) {
   // TODO loop around face
   // TODO build lists of four indices for each sub-quad
   // TODO append each list of four indices to face list
-  showError("buildSubdivisionFaceList() not implemented.");
+    vector<Index> quad(4);
+    size_t num_sides;
+    HalfedgeIter temp_he, temp_he_prev;
+    
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
+    {
+        
+        num_sides = f->degree();
+        temp_he = f->halfedge();
+        temp_he_prev = temp_he;
+        
+        do {
+            temp_he_prev = temp_he_prev->next();
+            
+        } while (temp_he_prev->next() != temp_he);
+        
+        for (size_t i = 0; i<num_sides; i++)
+        {
+            quad[0] = temp_he->vertex()->index;
+            quad[1] = temp_he->edge()->index;
+            quad[2] = temp_he->face()->index;
+            quad[3] = temp_he_prev->edge()->index;
+            
+            subDFaces.push_back(quad);
+            temp_he_prev = temp_he;
+            temp_he = temp_he->next();
+        }
+    }
 }
 
 FaceIter HalfedgeMesh::bevelVertex(VertexIter v) {

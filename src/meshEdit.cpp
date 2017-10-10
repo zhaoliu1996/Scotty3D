@@ -294,20 +294,15 @@ void HalfedgeMesh::computeLinearSubdivisionPositions() {
   // of the original vertex positions to Face::newPosition.  Note
   // that in general, NOT all faces will be triangles!
     
-    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
-    {
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v){
         v->newPosition = v->position;
     }
     
-    
-    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
-    {
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e){
         e->newPosition = e->centroid();
     }
     
-    
-    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
-    {
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f){
         f->newPosition = f->centroid();
     }
 }
@@ -327,12 +322,38 @@ void HalfedgeMesh::computeCatmullClarkPositions() {
   // slightly more involved, using the Catmull-Clark subdivision
   // rules. (These rules are outlined in the Developer Manual.)
 
+    
   // TODO face
-
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
+    {
+        f->newPosition = f->centroid();
+    }
+    
   // TODO edges
-
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
+    {
+        e->newPosition = (e->centroid() * 2 + e->halfedge()->face()->newPosition + e->halfedge()->twin()->face()->newPosition)*0.25;
+    }
+    
   // TODO vertices
-  showError("computeCatmullClarkPositions() not implemented.");
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
+    {
+        int n = v->degree();
+        Vector3D sum_faces_center = (0,0,0);
+        Vector3D sum_edges_center = (0,0,0);
+        HalfedgeIter h = v->halfedge();
+        
+        do {
+            h = h->twin()->next();
+            sum_faces_center += h->face()->newPosition;
+            sum_edges_center += h->edge()->newPosition;
+        } while (h != v->halfedge());
+        
+        sum_faces_center = sum_faces_center / n;
+        sum_edges_center = sum_edges_center / n;
+        
+        v->newPosition = (sum_faces_center + 2 * sum_edges_center + v->position*(n - 3)) / n;
+    }
 }
 
 /**
@@ -440,31 +461,30 @@ void HalfedgeMesh::buildSubdivisionFaceList(vector<vector<Index> >& subDFaces) {
   // TODO build lists of four indices for each sub-quad
   // TODO append each list of four indices to face list
     vector<Index> quad(4);
-    size_t num_sides;
-    HalfedgeIter temp_he, temp_he_prev;
+    int n; //number of sides
+    HalfedgeIter h, h_prev;
     
     for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
     {
         
-        num_sides = f->degree();
-        temp_he = f->halfedge();
-        temp_he_prev = temp_he;
+        n = f->degree();
+        h = f->halfedge();
+        h_prev = h;
         
-        do {
-            temp_he_prev = temp_he_prev->next();
-            
-        } while (temp_he_prev->next() != temp_he);
+        while (h_prev->next() != h){
+            h_prev = h_prev->next();
+        }
         
-        for (size_t i = 0; i<num_sides; i++)
+        for (int i = 0; i<n; i++)
         {
-            quad[0] = temp_he->vertex()->index;
-            quad[1] = temp_he->edge()->index;
-            quad[2] = temp_he->face()->index;
-            quad[3] = temp_he_prev->edge()->index;
+            quad[0] = h->vertex()->index;
+            quad[1] = h->edge()->index;
+            quad[2] = h->face()->index;
+            quad[3] = h_prev->edge()->index;
             
             subDFaces.push_back(quad);
-            temp_he_prev = temp_he;
-            temp_he = temp_he->next();
+            h_prev = h;
+            h = h->next();
         }
     }
 }

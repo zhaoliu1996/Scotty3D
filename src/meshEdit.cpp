@@ -372,22 +372,17 @@ void HalfedgeMesh::assignSubdivisionIndices() {
 
   // TODO Iterate over faces, assigning values to Face::index
     Index i = 0;
-    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
-    {
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v){
         v->index = i;
         i++;
     }
     
-    
-    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
-    {
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e){
         e->index = i;
         i++;
     }
     
-    
-    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
-    {
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f){
         f->index = i;
         i++;
     }
@@ -411,21 +406,15 @@ void HalfedgeMesh::buildSubdivisionVertexList(vector<Vector3D>& subDVertices) {
 
   // TODO Iterate over faces, assigning Face::newPosition to the appropriate
   // location in the new vertex list.
-    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v)
-    {
+    for (VertexIter v = verticesBegin(); v != verticesEnd(); ++v){
         subDVertices.push_back(v->newPosition);
-        
     }
     
-    
-    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e)
-    {
+    for (EdgeIter e = edgesBegin(); e != edgesEnd(); ++e){
         subDVertices.push_back(e->newPosition);
     }
     
-    
-    for (FaceIter f = facesBegin(); f != facesEnd(); ++f)
-    {
+    for (FaceIter f = facesBegin(); f != facesEnd(); ++f){
         subDVertices.push_back(f->newPosition);
     }
 }

@@ -815,35 +815,6 @@ void MeshResampler::upsample(HalfedgeMesh& mesh)
   // the new subdivided (fine) mesh, which has more elements to traverse.  We
   // will then assign vertex positions in
   // the new mesh based on the values we computed for the original mesh.
-
-  // Compute updated positions for all the vertices in the original mesh, using
-  // the Loop subdivision rule.
-
-  // Next, compute the updated vertex positions associated with edges.
-
-  // Next, we're going to split every edge in the mesh, in any order.  For
-  // future
-  // reference, we're also going to store some information about which
-  // subdivided
-  // edges come from splitting an edge in the original mesh, and which edges are
-  // new.
-  // In this loop, we only want to iterate over edges of the original
-  // mesh---otherwise,
-  // we'll end up splitting edges that we just split (and the loop will never
-  // end!)
-
-  // Finally, flip any new edge that connects an old and new vertex.
-
-  // Copy the updated vertex positions to the subdivided mesh.
-  
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

@@ -1,0 +1,20 @@
+AndrewID: zhaol1
+
+1. Facebevel, splitedge, flipedge
+
+Fully implemented.
+
+deletevertex
+artifact of losing face
+
+2. Triangulation, LinearSubdivision, and CatmullClarkSubdivision
+
+Fully implemented.
+
+3. LoopSubdivision
+
+Fully implemented.
+
+3.  beautiful 3D model
+
+model.dae

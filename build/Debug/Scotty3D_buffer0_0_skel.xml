@@ -1,0 +1,13 @@
+<Skeleton>
+    <Joint>
+        <Axis x="0" y="0" z="0"/>
+        <RenderScale val="6.9282032302755088"/>
+        <CapsuleRadius val="0.34641016151377546"/>
+        <Positions/>
+        <Rotations/>
+        <Scales>
+            <Knot Time="0" x="1" y="1" z="1"/>
+        </Scales>
+        <Children/>
+    </Joint>
+</Skeleton>

@@ -112,8 +112,14 @@ Ray Camera::generate_ray(double x, double y) const {
   // TODO:
   // compute position of the input sensor sample coordinate on the
   // canonical sensor plane one unit away from the pinhole.
-
-  return Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1));
+    double hFovTan = tan(hFov / 180.0 * M_PI * 0.5) * 2;
+    double vFovTan = tan(vFov / 180.0 * M_PI * 0.5) * 2;
+    Vector3D d = c2w * Vector3D((x - 0.5) * hFovTan, (y - 0.5) * vFovTan, -1);
+    Ray r = Ray(pos, d.unit());
+    r.min_t = nClip;
+    r.max_t = fClip;
+    return r;
+    //return Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1));
 }
 
 }  // namespace CMU462

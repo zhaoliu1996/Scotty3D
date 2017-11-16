@@ -1,9 +1,44 @@
-# CMU 15-462 - Scotty3D
+AndrewID: zhaol1
 
-Welcome to Scotty3D! This 3D graphics software implements interactive mesh
-editing, realistic path tracing, and dynamic animation. Implementing the
-functionality of the program constitutes the majority of the coursework for
-15-462/662 Computer Graphics at Carnegie Mellon University.
+1. Facebevel, splitedge, flipedge
 
-Further information is available in the User Guide and Developer Manual, both
-available on the project wiki accessible via tab at the top of the Github.com UI.
+Fully implemented.
+
+deletevertex
+artifact of losing face
+
+2.
+
+Fully implemented.
+
+Task 4:
+
+Fully implemented.
+
+Task 5:
+
+Fully implemented.
+
+Task 6:
+
+Fully implemented.
+
+Task 7:
+
+Fully implemented.
+
+Task 8:
+
+Fully implemented.
+
+Task 9:
+
+Task9.svg
+
+Extra credit:
+
+N/A
+
+Any other comments and considerations:
+
+....

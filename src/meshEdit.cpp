@@ -165,8 +165,62 @@ FaceIter HalfedgeMesh::eraseVertex(VertexIter v) {
   // TODO: (meshEdit)
   // This method should replace the given vertex and all its neighboring
   // edges and faces with a single face, returning the new face.
+    
+    //Dont do anything if the vertex is boundary
+    if (v->isBoundary()){
+        return v->halfedge()->face();
+    }
+    
+    vector<HalfedgeIter> hf;
+    vector<HalfedgeIter> hd;
+    vector<EdgeIter> ve;
+    vector<FaceIter> vf;
+    HalfedgeIter temp=v->halfedge();
+    do{
+        hd.push_back(temp);
+        hd.push_back(temp->twin());
+        vf.push_back(temp->face());
+        ve.push_back(temp->edge());
+        temp = temp->twin()->next();
+    } while (temp != v->halfedge());
+    
+    HalfedgeIter ht = v->halfedge()->next();
+    hf.push_back(ht);
+    do{
+        if(ht->next()->next()->vertex()!=v){
+            hf.push_back(ht->next());
+            ht = ht->next();
+        }
+        else{
+            ht = ht->next()->twin();
+        }
+        
+    } while (ht!=v->halfedge()->next());
+    
+    FaceIter f = newFace();
+    f->halfedge() = hf[0];
+    for (int i = 0; i<hf.size(); i++){
+        hf[i]->next() = hf[(i-1+hf.size())%hf.size()];
+        
+        hf[i]->face() = f;
+        hf[i]->vertex()->halfedge() = hf[i];
+    }
+    for (int i = 0; i<hd.size(); i++){
+        
+        deleteHalfedge(hd[i]);
+    }
+    
+    for (int i = 0; i<ve.size(); i++){
+        deleteEdge(ve[i]);
+    }
 
-  return FaceIter();
+    for (int i = 0; i<vf.size(); i++){
+        deleteFace(vf[i]);
+    }
+    
+    deleteVertex(v);
+   
+  return f;
 }
 
 FaceIter HalfedgeMesh::eraseEdge(EdgeIter e) {
@@ -829,15 +883,16 @@ void MeshResampler::upsample(HalfedgeMesh& mesh)
         double u;
         double n = (double)(v->degree());
         
+        v->isNew = false;
+        v->halfedge()->edge()->isNew = false;
+        
         if (v->degree() == 3){
             u = 3. / 16.;
         }
         else{
             u = 3. / (8.*n);
         }
-
         v->newPosition = (1. - n*u)*v->position + (u*n)*v->neighborhoodCentroid();
-        v->isNew = false;
     }
     
     //Compute new positions associated with the vertices that will be inserted at edge midpoints, and store them in Edge::newPosition.
@@ -858,39 +913,29 @@ void MeshResampler::upsample(HalfedgeMesh& mesh)
     
     //Split every edge in the mesh, being careful about how the loop is written. In particular, you should make sure to iterate only over edges of the original mesh. Otherwise, the loop will keep splitting edges that you just created!
     
-    
-    VertexIter v_temp;
-    
-    HalfedgeIter he_temp;
-    Vector3D e_new_pos_hold;
-    vector<EdgeIter> original_edges;
-    
     int n = mesh.nEdges();
     EdgeIter e = mesh.edgesBegin();
     for (int i = 0; i<n; i++){
         EdgeIter e_next = e;
         e_next++;
         if (e->isNew == false && e->isBoundary()==false){
-            e_new_pos_hold = e->newPosition;
-            v_temp = mesh.splitEdge(e);
+            VertexIter v_temp = mesh.splitEdge(e);
             v_temp->newPosition = e->newPosition;
             v_temp->isNew = true;
             
-            he_temp = v_temp->halfedge();
-            
-            do {
+            HalfedgeIter he_temp = v_temp->halfedge()->twin()->next();
+        
+            // set the new two edge to new and "old edges" (now splited to two) to false;
+            while (he_temp != v_temp->halfedge()){
                 he_temp->edge()->isNew = true;
                 he_temp = he_temp->twin()->next();
-                
-            } while (he_temp != v_temp->halfedge());
-            original_edges.push_back(v_temp->halfedge()->edge());
-            original_edges.push_back(v_temp->halfedge()->twin()->next()->twin()->next()->edge());
+            }
+            
+            v_temp->halfedge()->edge()->isNew = false;
+            v_temp->halfedge()->twin()->next()->twin()->next()->edge()->isNew = false;
+
         }
         e = e_next;
-    }
-    
-    for (int i = 0; i<original_edges.size(); i++){
-        original_edges[i]->isNew = false;
     }
 
     //Flip any new edge that connects an old and new vertex.
@@ -900,6 +945,7 @@ void MeshResampler::upsample(HalfedgeMesh& mesh)
     for (int i = 0; i<n; i++){
         EdgeIter e_next = e;
         e_next++;
+        
         if ((e->isNew == true) && ((e->halfedge()->vertex()->isNew == true && e->halfedge()->twin()->vertex()->isNew == false) || (e->halfedge()->vertex()->isNew == false && e->halfedge()->twin()->vertex()->isNew == true))){
             e_next = mesh.flipEdge(e);
             

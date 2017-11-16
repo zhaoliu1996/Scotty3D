@@ -37,7 +37,6 @@ bool Triangle::intersect(const Ray& r, Intersection* isect) const {
   // TODO (PathTracer):
   // implement ray-triangle intersection. When an intersection takes
   // place, the Intersection data should be updated accordingly
-
     Vector3D p1(mesh->positions[v1]), p2(mesh->positions[v2]), p3(mesh->positions[v3]);
     Vector3D n1(mesh->normals[v1]), n2(mesh->normals[v2]), n3(mesh->normals[v3]);
     

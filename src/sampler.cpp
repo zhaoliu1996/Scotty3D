@@ -3,11 +3,12 @@
 namespace CMU462 {
 
 // Uniform Sampler2D Implementation //
+
 Vector2D UniformGridSampler2D::get_sample() const {
     double Xi1 = (double)(std::rand()) / RAND_MAX;
     double Xi2 = (double)(std::rand()) / RAND_MAX;
     return Vector2D(Xi1, Xi2);
-    }
+}
 
 // Uniform Hemisphere Sampler3D Implementation //
 

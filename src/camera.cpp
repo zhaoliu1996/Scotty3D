@@ -109,9 +109,10 @@ void Camera::compute_position() {
 }
 
 Ray Camera::generate_ray(double x, double y) const {
-  // TODO:
+  // TODO (PathTracer):
   // compute position of the input sensor sample coordinate on the
   // canonical sensor plane one unit away from the pinhole.
+
     double hFovTan = tan(hFov / 180.0 * M_PI * 0.5) * 2;
     double vFovTan = tan(vFov / 180.0 * M_PI * 0.5) * 2;
     Vector3D d = c2w * Vector3D((x - 0.5) * hFovTan, (y - 0.5) * vFovTan, -1);

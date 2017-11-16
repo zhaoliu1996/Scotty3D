@@ -1,0 +1,1026 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		1E3071B79CDC4246854B7AED /* install */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CF63AA95693847B996C05EF6 /* Build configuration list for PBXAggregateTarget "install" */;
+			buildPhases = (
+				56CFE6F04F3B4C9F92D8C2F2 /* CMake PostBuild Rules */,
+			);
+			dependencies = (
+				1CB61EEBA6284D8E960BB784 /* PBXTargetDependency */,
+			);
+			name = install;
+			productName = install;
+		};
+		4374F4108DA8453D83DE55C8 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 154F76CFF8C94A5BBF940B5E /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				8608F1250A2643BF9DDC7886 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		F1970D5F19C647B5999231CF /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 768FECD1EF9249C19510206A /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				A12C4F93A3D84249952948D3 /* CMake Rules */,
+			);
+			dependencies = (
+				BCB5E99AD69F4029A95F38E8 /* PBXTargetDependency */,
+				734F2EB886CF47ED93FB4E91 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+		FD844403FAF44CB880D4A380 /* uninstall */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 869F71E38D16458FB1019772 /* Build configuration list for PBXAggregateTarget "uninstall" */;
+			buildPhases = (
+				8FBDFD0D628D49219FD61867 /* CMake Rules */,
+			);
+			dependencies = (
+				47D8239060FA44969D013D02 /* PBXTargetDependency */,
+			);
+			name = uninstall;
+			productName = uninstall;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		04B7A27C78BF4B88A9A94FED /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.m */ = {isa = PBXBuildFile; fileRef = 69AE5209BCD34D4DBD33A7A4 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.m */; };
+		0C0AF1B239B24F3D839CB18A /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/init.c */ = {isa = PBXBuildFile; fileRef = 344A315B83EE4806820CD8EA /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/init.c */; };
+		1F56BD8BC4CD48D3B1FF477B /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.h */ = {isa = PBXBuildFile; fileRef = E0CEB853BCCA49F4BA9F8C3A /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.h */; };
+		53FF647CB1C1467D8ACF4F68 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/input.c */ = {isa = PBXBuildFile; fileRef = 7FE814FB81A74C48A0C707F8 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/input.c */; };
+		5F2749AD8028491EB91B31FE /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.h */ = {isa = PBXBuildFile; fileRef = 003C7146C89748E1A8B28BDF /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.h */; };
+		7100F02D31E64FA38EDA7142 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.h */ = {isa = PBXBuildFile; fileRef = 510F968CA5C6422599C18063 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.h */; };
+		742B1A697DB94C9E8277C92E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_window.m */ = {isa = PBXBuildFile; fileRef = C04107FA450E461B91540199 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_window.m */; };
+		825ADD0A6ED44FD5AFD3C8F3 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_monitor.m */ = {isa = PBXBuildFile; fileRef = 7481A706BD164A9FB1A0A867 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_monitor.m */; };
+		A0A9B340FFE948F28E7ADACB /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 996FFD6ED2264E2A8F2C3313 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/CMakeLists.txt */; };
+		AC391CBDBB8646929BF22873 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.c */ = {isa = PBXBuildFile; fileRef = 11CB777EE10442568EAA0238 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.c */; };
+		BEB9486428B94189B5947BBE /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_platform.h */ = {isa = PBXBuildFile; fileRef = 7A4304EF09534D6396B8394C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_platform.h */; };
+		C3D411B000B447518FF5DB42 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3native.h */ = {isa = PBXBuildFile; fileRef = B1A31C88CEFF445BA748E306 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3native.h */; };
+		C5EFFC07F5424137BB10C931 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/internal.h */ = {isa = PBXBuildFile; fileRef = 03874CC10DDE4D4F866749A5 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/internal.h */; };
+		C729C8F021614583ACE49EF9 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/context.c */ = {isa = PBXBuildFile; fileRef = B668E4FA7C1A4DF6BD79227D /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/context.c */; };
+		CBBC34CD8ABD41FAB616EC1D /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/mach_time.c */ = {isa = PBXBuildFile; fileRef = E8357959517B4CA5B630F1F3 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/mach_time.c */; };
+		DCCABF0A874749719E06FD9B /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/window.c */ = {isa = PBXBuildFile; fileRef = 1DEEB48743B7446BA425A302 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/window.c */; };
+		DF32C1BC293B48508258CB51 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.m */ = {isa = PBXBuildFile; fileRef = F3E1CB636E7144D8AABB6965 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.m */; };
+		E8CED294AD2345D29859C3F5 /* /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src/glfw_config.h */ = {isa = PBXBuildFile; fileRef = B5B6B140FF51409D91D69B5E /* /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src/glfw_config.h */; };
+		F3ABE2D3895946B099B68A5E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3.h */ = {isa = PBXBuildFile; fileRef = 2330BB36A06147048B9EDE9C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3.h */; };
+		F48CCF726DE5448CBB4EA468 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/monitor.c */ = {isa = PBXBuildFile; fileRef = 6912748D948E4B5CB44FB62F /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/monitor.c */; };
+		F617A0241C874DE38B70CABE /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_init.m */ = {isa = PBXBuildFile; fileRef = BF51872E1083425FA39A288E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_init.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		0C515E4B126C465F9429AD2F /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		0F23EDC3503142D4BDABBF6D /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		D1D5678801AB42389AC66008 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		F5C67EFBA688409AA82B9267 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		04FD338EB4404A5B8E76BF33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBF29E2B6C39442B9BD827DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDE4816AC6E64BF9AB1136B6;
+			remoteInfo = glfw;
+		};
+		38E73CA88ED84C62BAFFB485 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBF29E2B6C39442B9BD827DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1970D5F19C647B5999231CF;
+			remoteInfo = ALL_BUILD;
+		};
+		445675FC37774264AF75C094 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBF29E2B6C39442B9BD827DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4374F4108DA8453D83DE55C8;
+			remoteInfo = ZERO_CHECK;
+		};
+		98FC0F402DF948318DCA033A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBF29E2B6C39442B9BD827DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4374F4108DA8453D83DE55C8;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		003C7146C89748E1A8B28BDF /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = iokit_joystick.h; path = src/iokit_joystick.h; sourceTree = SOURCE_ROOT; };
+		03874CC10DDE4D4F866749A5 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = internal.h; path = src/internal.h; sourceTree = SOURCE_ROOT; };
+		11CB777EE10442568EAA0238 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = posix_tls.c; path = src/posix_tls.c; sourceTree = SOURCE_ROOT; };
+		1DEEB48743B7446BA425A302 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/window.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = window.c; path = src/window.c; sourceTree = SOURCE_ROOT; };
+		2330BB36A06147048B9EDE9C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = glfw3.h; path = include/GLFW/glfw3.h; sourceTree = SOURCE_ROOT; };
+		344A315B83EE4806820CD8EA /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/init.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = init.c; path = src/init.c; sourceTree = SOURCE_ROOT; };
+		3B86540916E14B4792D459DC /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		510F968CA5C6422599C18063 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = nsgl_context.h; path = src/nsgl_context.h; sourceTree = SOURCE_ROOT; };
+		6912748D948E4B5CB44FB62F /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/monitor.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = monitor.c; path = src/monitor.c; sourceTree = SOURCE_ROOT; };
+		69AE5209BCD34D4DBD33A7A4 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = iokit_joystick.m; path = src/iokit_joystick.m; sourceTree = SOURCE_ROOT; };
+		7481A706BD164A9FB1A0A867 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_monitor.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = cocoa_monitor.m; path = src/cocoa_monitor.m; sourceTree = SOURCE_ROOT; };
+		7A4304EF09534D6396B8394C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_platform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = cocoa_platform.h; path = src/cocoa_platform.h; sourceTree = SOURCE_ROOT; };
+		7FE814FB81A74C48A0C707F8 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/input.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = input.c; path = src/input.c; sourceTree = SOURCE_ROOT; };
+		996FFD6ED2264E2A8F2C3313 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		AFED5AF15EF540DAA8BAC90F /* glfw */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglfw3.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1A31C88CEFF445BA748E306 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3native.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = glfw3native.h; path = include/GLFW/glfw3native.h; sourceTree = SOURCE_ROOT; };
+		B5B6B140FF51409D91D69B5E /* /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src/glfw_config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = glfw_config.h; path = ../../../macbook/CMU462/deps/glfw/src/glfw_config.h; sourceTree = SOURCE_ROOT; };
+		B668E4FA7C1A4DF6BD79227D /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/context.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = context.c; path = src/context.c; sourceTree = SOURCE_ROOT; };
+		BF51872E1083425FA39A288E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_init.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = cocoa_init.m; path = src/cocoa_init.m; sourceTree = SOURCE_ROOT; };
+		C04107FA450E461B91540199 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_window.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = cocoa_window.m; path = src/cocoa_window.m; sourceTree = SOURCE_ROOT; };
+		D27ED9E737BE4F64A07CC9C0 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		DE78463B8899479B88147CE9 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E0CEB853BCCA49F4BA9F8C3A /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = posix_tls.h; path = src/posix_tls.h; sourceTree = SOURCE_ROOT; };
+		E8357959517B4CA5B630F1F3 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/mach_time.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = mach_time.c; path = src/mach_time.c; sourceTree = SOURCE_ROOT; };
+		F3E1CB636E7144D8AABB6965 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = nsgl_context.m; path = src/nsgl_context.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		390B8A86B9D54327A114330C /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				2330BB36A06147048B9EDE9C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3.h */,
+				B1A31C88CEFF445BA748E306 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/include/GLFW/glfw3native.h */,
+				7A4304EF09534D6396B8394C /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_platform.h */,
+				03874CC10DDE4D4F866749A5 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/internal.h */,
+				003C7146C89748E1A8B28BDF /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.h */,
+				510F968CA5C6422599C18063 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.h */,
+				E0CEB853BCCA49F4BA9F8C3A /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.h */,
+				B5B6B140FF51409D91D69B5E /* /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src/glfw_config.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		3BB2A53FD3BF4EB9960DEC27 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFED5AF15EF540DAA8BAC90F /* glfw */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		61FB8DF49B5A4712AF0E3986 /* glfw */ = {
+			isa = PBXGroup;
+			children = (
+				982697EB517448CEA78E96A4 /* Source Files */,
+				390B8A86B9D54327A114330C /* Header Files */,
+				996FFD6ED2264E2A8F2C3313 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/CMakeLists.txt */,
+			);
+			name = glfw;
+			sourceTree = "<group>";
+		};
+		6239EF5F9B0543C1968F1693 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				9181122B81FE4CE2BEA67FB6 /* CMake Rules */,
+				3B86540916E14B4792D459DC /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		632A9FCF393E42169E6E498C /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		6713107949B84946BDC89CD8 /* GLFW3 */ = {
+			isa = PBXGroup;
+			children = (
+				61FB8DF49B5A4712AF0E3986 /* glfw */,
+			);
+			name = GLFW3;
+			sourceTree = "<group>";
+		};
+		6D749823BD614828823439A9 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		742DFC7DF4D14982BD05C10D = {
+			isa = PBXGroup;
+			children = (
+				90FB66930A4147868C420916 /* uninstall */,
+				6239EF5F9B0543C1968F1693 /* ALL_BUILD */,
+				E77620842FCD41CA9E0594E9 /* ZERO_CHECK */,
+				6713107949B84946BDC89CD8 /* GLFW3 */,
+				3BB2A53FD3BF4EB9960DEC27 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		90FB66930A4147868C420916 /* uninstall */ = {
+			isa = PBXGroup;
+			children = (
+				6D749823BD614828823439A9 /* CMake Rules */,
+				D27ED9E737BE4F64A07CC9C0 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */,
+			);
+			name = uninstall;
+			sourceTree = "<group>";
+		};
+		9181122B81FE4CE2BEA67FB6 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		982697EB517448CEA78E96A4 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF51872E1083425FA39A288E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_init.m */,
+				7481A706BD164A9FB1A0A867 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_monitor.m */,
+				C04107FA450E461B91540199 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_window.m */,
+				B668E4FA7C1A4DF6BD79227D /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/context.c */,
+				344A315B83EE4806820CD8EA /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/init.c */,
+				7FE814FB81A74C48A0C707F8 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/input.c */,
+				69AE5209BCD34D4DBD33A7A4 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.m */,
+				E8357959517B4CA5B630F1F3 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/mach_time.c */,
+				6912748D948E4B5CB44FB62F /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/monitor.c */,
+				F3E1CB636E7144D8AABB6965 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.m */,
+				11CB777EE10442568EAA0238 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.c */,
+				1DEEB48743B7446BA425A302 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/window.c */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		E77620842FCD41CA9E0594E9 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				632A9FCF393E42169E6E498C /* CMake Rules */,
+				DE78463B8899479B88147CE9 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDE4816AC6E64BF9AB1136B6 /* glfw */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2D662D5A0E34A14BDF26D7C /* Build configuration list for PBXNativeTarget "glfw" */;
+			buildPhases = (
+				43DA026BF4AB4BCEA7FFC51B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = glfw;
+			productName = glfw;
+			productReference = AFED5AF15EF540DAA8BAC90F /* glfw */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBF29E2B6C39442B9BD827DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0910;
+			};
+			buildConfigurationList = D01A9DD6F49849AE9946B51D /* Build configuration list for PBXProject "GLFW" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				0F23EDC3503142D4BDABBF6D /* Debug */,
+				F5C67EFBA688409AA82B9267 /* Release */,
+				D1D5678801AB42389AC66008 /* MinSizeRel */,
+				0C515E4B126C465F9429AD2F /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 742DFC7DF4D14982BD05C10D;
+			projectDirPath = ../../../../CMU462/deps/glfw;
+			projectRoot = "";
+			targets = (
+				F1970D5F19C647B5999231CF /* ALL_BUILD */,
+				4374F4108DA8453D83DE55C8 /* ZERO_CHECK */,
+				1E3071B79CDC4246854B7AED /* install */,
+				FD844403FAF44CB880D4A380 /* uninstall */,
+				FDE4816AC6E64BF9AB1136B6 /* glfw */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05E2C9243F014B56A300F82E = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		56CFE6F04F3B4C9F92D8C2F2 /* CMake PostBuild Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake PostBuild Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw -f /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/CMakeScripts/install_postBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		8608F1250A2643BF9DDC7886 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw -f /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		8FBDFD0D628D49219FD61867 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw -f /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/CMakeScripts/uninstall_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		9F1A749F2E38437BABF4C16F = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		A12C4F93A3D84249952948D3 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw -f /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		CE922E72CF904AAFAE47E518 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		CEE25F1FCF4F4ADEB7529E9F = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43DA026BF4AB4BCEA7FFC51B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F617A0241C874DE38B70CABE /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_init.m */,
+				825ADD0A6ED44FD5AFD3C8F3 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_monitor.m */,
+				742B1A697DB94C9E8277C92E /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/cocoa_window.m */,
+				C729C8F021614583ACE49EF9 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/context.c */,
+				0C0AF1B239B24F3D839CB18A /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/init.c */,
+				53FF647CB1C1467D8ACF4F68 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/input.c */,
+				04B7A27C78BF4B88A9A94FED /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/iokit_joystick.m */,
+				CBBC34CD8ABD41FAB616EC1D /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/mach_time.c */,
+				F48CCF726DE5448CBB4EA468 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/monitor.c */,
+				DF32C1BC293B48508258CB51 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/nsgl_context.m */,
+				AC391CBDBB8646929BF22873 /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/posix_tls.c */,
+				DCCABF0A874749719E06FD9B /* /Users/liuzhao/Scotty3D/CMU462/deps/glfw/src/window.c */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1CB61EEBA6284D8E960BB784 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1970D5F19C647B5999231CF /* ALL_BUILD */;
+			targetProxy = 38E73CA88ED84C62BAFFB485 /* PBXContainerItemProxy */;
+		};
+		47D8239060FA44969D013D02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4374F4108DA8453D83DE55C8 /* ZERO_CHECK */;
+			targetProxy = 98FC0F402DF948318DCA033A /* PBXContainerItemProxy */;
+		};
+		734F2EB886CF47ED93FB4E91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4374F4108DA8453D83DE55C8 /* ZERO_CHECK */;
+			targetProxy = 445675FC37774264AF75C094 /* PBXContainerItemProxy */;
+		};
+		BCB5E99AD69F4029A95F38E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDE4816AC6E64BF9AB1136B6 /* glfw */;
+			targetProxy = 04FD338EB4404A5B8E76BF33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E6EE808E71A48449B5C1778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/build;
+			};
+			name = Debug;
+		};
+		243CFFAA68D5416AA88C099F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		2DFEDAFBECAA4B669BF9CF82 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = uninstall;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		36EA3291C2D54C2DA4EECB5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		3A6165ECBBCA440A98A5CB6C /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/build;
+			};
+			name = RelWithDebInfo;
+		};
+		3A7F4F1350BD422EB667A08B /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		3F021696FECC449B8F5216AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",_GLFW_USE_CONFIG_H);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/liuzhao/Scotty3D/CMU462/deps/glfw/src,/Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "    -DNDEBUG -fPIC -w   -Wall";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = glfw3;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		427F105BBB614609B1BCAE08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = uninstall;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		476939F4B0654FDA88D55207 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",_GLFW_USE_CONFIG_H);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/liuzhao/Scotty3D/CMU462/deps/glfw/src,/Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "    -DNDEBUG -fPIC -w   -Wall";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = glfw3;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5BFA19596A8A425D82CC760B /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		72E3AB03BFC943F19C963C78 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		7E2964339E314413AD56BC45 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/build;
+			};
+			name = MinSizeRel;
+		};
+		897CF068E84F4FAFA8D9E401 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",_GLFW_USE_CONFIG_H);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/liuzhao/Scotty3D/CMU462/deps/glfw/src,/Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "       -DNDEBUG -fPIC -w   -Wall";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = glfw3;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		9168149B783B45D1A680A695 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = uninstall;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		9D8D4ED65F734ACA91DE3DD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		A0886A0D1F954E808B2B6D1E /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = uninstall;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		BCFC8FDEA49640ECA876542C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		C017D4EDE52E43ED8970068C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		C3B347B242BA4AB1A18B8632 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		D24D45E5ECED44A787E42DA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		D66B7450C374406DB606546A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E121FA4B6254405194EB946F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",_GLFW_USE_CONFIG_H);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/liuzhao/Scotty3D/CMU462/deps/glfw/src,/Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "   -fPIC -w   -Wall";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = glfw3;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/src;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		E83659B65B4043A28F20ED26 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E8AB3D30EEA54C0BA3442CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/liuzhao/Scotty3D/macbook/CMU462/deps/glfw/build;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		154F76CFF8C94A5BBF940B5E /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36EA3291C2D54C2DA4EECB5C /* Debug */,
+				C3B347B242BA4AB1A18B8632 /* Release */,
+				5BFA19596A8A425D82CC760B /* MinSizeRel */,
+				D66B7450C374406DB606546A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		768FECD1EF9249C19510206A /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				243CFFAA68D5416AA88C099F /* Debug */,
+				C017D4EDE52E43ED8970068C /* Release */,
+				BCFC8FDEA49640ECA876542C /* MinSizeRel */,
+				E83659B65B4043A28F20ED26 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		869F71E38D16458FB1019772 /* Build configuration list for PBXAggregateTarget "uninstall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				427F105BBB614609B1BCAE08 /* Debug */,
+				9168149B783B45D1A680A695 /* Release */,
+				2DFEDAFBECAA4B669BF9CF82 /* MinSizeRel */,
+				A0886A0D1F954E808B2B6D1E /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CF63AA95693847B996C05EF6 /* Build configuration list for PBXAggregateTarget "install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24D45E5ECED44A787E42DA6 /* Debug */,
+				9D8D4ED65F734ACA91DE3DD5 /* Release */,
+				72E3AB03BFC943F19C963C78 /* MinSizeRel */,
+				3A7F4F1350BD422EB667A08B /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D01A9DD6F49849AE9946B51D /* Build configuration list for PBXProject "GLFW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E6EE808E71A48449B5C1778 /* Debug */,
+				E8AB3D30EEA54C0BA3442CDD /* Release */,
+				7E2964339E314413AD56BC45 /* MinSizeRel */,
+				3A6165ECBBCA440A98A5CB6C /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E2D662D5A0E34A14BDF26D7C /* Build configuration list for PBXNativeTarget "glfw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E121FA4B6254405194EB946F /* Debug */,
+				3F021696FECC449B8F5216AE /* Release */,
+				476939F4B0654FDA88D55207 /* MinSizeRel */,
+				897CF068E84F4FAFA8D9E401 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBF29E2B6C39442B9BD827DC /* Project object */;
+}

@@ -13,7 +13,9 @@ Triangle::Triangle(const Mesh* mesh, size_t v1, size_t v2, size_t v3)
 BBox Triangle::get_bbox() const {
   // TODO (PathTracer):
   // compute the bounding box of the triangle
-    Vector3D p1(mesh->positions[v1]), p2(mesh->positions[v2]), p3(mesh->positions[v3]);
+    Vector3D p1(mesh->positions[v1]);
+    Vector3D p2(mesh->positions[v2]);
+    Vector3D p3(mesh->positions[v3]);
     BBox a(p1);
     a.expand(p2);
     a.expand(p3);
@@ -22,10 +24,16 @@ BBox Triangle::get_bbox() const {
 
 bool Triangle::intersect(const Ray& r) const {
   // TODO (PathTracer): implement ray-triangle intersection
-    Vector3D p1(mesh->positions[v1]), p2(mesh->positions[v2]), p3(mesh->positions[v3]);
+    Vector3D p1(mesh->positions[v1]);
+    Vector3D p2(mesh->positions[v2]);
+    Vector3D p3(mesh->positions[v3]);
     Vector3D o = r.o;
     Vector3D d = r.d;
-    Vector3D e1 = p2-p1, e2 = p3-p1, s = o-p1, s1 = cross(d,e2), s2 = cross(s,e1);
+    Vector3D e1 = p2-p1;
+    Vector3D e2 = p3-p1;
+    Vector3D s = o-p1;
+    Vector3D s1 = cross(d,e2);
+    Vector3D s2 = cross(s,e1);
     double c1 = 1/(dot(s1,e1)), c2 = dot(s2,e2), c3 = dot(s1,s), c4 = dot(s2,d);
     double t = c1*c2, b1 = c1*c3, b2 = c1*c4;
     if (t>=r.min_t && t<=r.max_t && b1>0 && b2>0 && (1-b1-b2)>0){
@@ -40,18 +48,30 @@ bool Triangle::intersect(const Ray& r, Intersection* isect) const {
   // TODO (PathTracer):
   // implement ray-triangle intersection. When an intersection takes
   // place, the Intersection data should be updated accordingly
-    Vector3D p1(mesh->positions[v1]), p2(mesh->positions[v2]), p3(mesh->positions[v3]);
-    Vector3D n1(mesh->normals[v1]), n2(mesh->normals[v2]), n3(mesh->normals[v3]);
+    Vector3D p1(mesh->positions[v1]);
+    Vector3D p2(mesh->positions[v2]);
+    Vector3D p3(mesh->positions[v3]);
+    Vector3D n1(mesh->normals[v1]);
+    Vector3D n2(mesh->normals[v2]);
+    Vector3D n3(mesh->normals[v3]);
     
     Vector3D o = r.o;
     Vector3D d = r.d;
-    Vector3D e1 = p2-p1, e2 = p3-p1, s = o-p1, s1 = cross(d,e2), s2 = cross(s,e1);
-    double c1 = 1/(dot(s1,e1)), c2 = dot(s2,e2), c3 = dot(s1,s), c4 = dot(s2,d);
+    Vector3D e1 = p2-p1;
+    Vector3D e2 = p3-p1;
+    Vector3D s = o-p1;
+    Vector3D s1 = cross(d,e2);
+    Vector3D s2 = cross(s,e1);
+    double c1 = 1/(dot(s1,e1));
+    double c2 = dot(s2,e2);
+    double c3 = dot(s1,s);
+    double c4 = dot(s2,d);
     double t = c1*c2, b1 = c1*c3, b2 = c1*c4;
     if (t>=r.min_t && t<=r.max_t && b1>0 && b2>0 && (1-b1-b2)>0){
         r.max_t = t;
         isect->t = t;
         isect->n = n1*(1-b1-b2) + n2*b1 + n3*b2;
+        // change the normal if its facing the back
         if(dot(isect->n, r.d)>0){
             isect->n = -1 * isect->n;
         }

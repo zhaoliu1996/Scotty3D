@@ -73,96 +73,90 @@ bool BVHAccel::intersect(const Ray &ray, Intersection *isect) const {
   //}
 
   //return hit;
-	return intersect_helper(get_root(), ray, isect);
+	return intersect_recursive(get_root(), ray, isect);
 }
 
-/* helper functions */
-/* for a node, we check if we split it in mid x, mid y or mid z */
+/* function for construct a bvh */
 void BVHAccel::construct_bvh(BVHNode* root, size_t max_leaf_size) {
 
-	//base case: less than max_leaf_size primitives in the node
+	/*
+     base case: number of node smaller than max_leaf_size
+     end of recurssion
+    */
 	if (root->range <= max_leaf_size) {
 		return;
 	}
 
-	size_t split_index;
-	//size_t split_dim;
+    // where to split. at least from the first one
+	size_t i = 0;
 
 	size_t start_l = root->start;
 	size_t range_l, start_r, range_r;
 	BBox left_BB, right_BB;
 
 	//decide which dimension and where to split, and sort the primitives in that dimension
-	bool split = eval(root, &split_index);
+	bool split = eval(root, &i);
 
 	if (split) {
-
-		range_l = split_index + 1;
+		range_l = i + 1;
 		start_r = start_l + range_l;
 		range_r = root->range - range_l;
-
-
+        
 		for (size_t l = start_l; l < (start_l + range_l); l++) {
 			left_BB.expand(primitives[l]->get_bbox());
 		}
-
 		for (size_t r = start_r; r < (start_r + range_r); r++) {
 			right_BB.expand(primitives[r]->get_bbox());
 		}
 
 		BVHNode* left = new BVHNode(left_BB, start_l, range_l);
 		BVHNode* right = new BVHNode(right_BB, start_r, range_r);
-
 		root->l = left;
 		root->r = right;
-
 		construct_bvh(left, max_leaf_size);
 		construct_bvh(right, max_leaf_size);
 	}
-
 	return;
-
 }
 
-bool BVHAccel::eval(BVHNode* root, size_t* split_index) {
+bool BVHAccel::eval(BVHNode* root, size_t* i) {
 
-	//sort in x coordinate
-
+	//sort according to x coordinate
 	double cost_x;
-	size_t index_x;
+	size_t i_x;
 	std::sort(primitives.begin() + (root->start), primitives.begin() + (root->start + root->range), sort_xdir());
-	eval_helper(root, &cost_x, &index_x);
+	eval_cost(root, &cost_x, &i_x);
 
-	//sort in y coordinate
+	//sort according to y coordinate
 	double cost_y;
-	size_t index_y;
+	size_t i_y;
 	std::sort(primitives.begin() + (root->start), primitives.begin() + (root->start + root->range), sort_ydir());
-	eval_helper(root, &cost_y, &index_y);
+	eval_cost(root, &cost_y, &i_y);
 
-	//sort in z coordinate
+	//sort according to z coordinate
 	double cost_z;
-	size_t index_z;
+	size_t i_z;
 	std::sort(primitives.begin() + (root->start), primitives.begin() + (root->start + root->range), sort_zdir());
-	eval_helper(root, &cost_z, &index_z);
+	eval_cost(root, &cost_z, &i_z);
 
 	double cost_min = min(cost_x, min(cost_y, cost_z));
 
 	if (cost_min == cost_x) {
-		*split_index = index_x;
+		*i = i_x;
 		std::sort(primitives.begin() + (root->start), primitives.begin() + (root->start + root->range), sort_xdir());
 	}
 	else if (cost_min == cost_y) {
-		*split_index = index_y;
+		*i = i_y;
 		std::sort(primitives.begin() + (root->start), primitives.begin() + (root->start + root->range), sort_ydir());
 	}
 	else {
-		*split_index = index_z;
+		*i = i_z;
 	}
-
 	return true;
 }
 
-void BVHAccel::eval_helper(BVHNode* root, double* cost, size_t* index) {
+    // determine the sepreation point on a sorted list based on the cost
+void BVHAccel::eval_cost(BVHNode* root, double* cost, size_t* index) {
 
 	double cost_min = -1;
 	double cost_cur;
@@ -170,37 +164,49 @@ void BVHAccel::eval_helper(BVHNode* root, double* cost, size_t* index) {
 
 	BBox box_l;
 	BBox box_r;
+    // optimization for large file
+    if (root->range > 256) {
+        size_t j = root->range/64;
+        for (size_t i = 0; i < root->range; i= i+j) {
+            if (i >= root->range-j) break;
+            box_l.expand(primitives[root->start + i]->get_bbox());
+            box_r = rest_bbox(root, i + j, root->range);
+            cost_cur = (i + 1) * box_l.surface_area() + (root->range - i - 1) * box_r.surface_area();
+            
+            if (cost_min < 0 || cost_cur < cost_min) {
+                cost_min = cost_cur;
+                index_min = i;
+            }
+        }
+        *cost = cost_min;
+        *index = index_min;
+    }
+    else{
+        for (size_t i = 0; i < root->range; i++) {
+            box_l.expand(primitives[root->start + i]->get_bbox());
+            box_r = rest_bbox(root, i + 1, root->range);
+            cost_cur = (i + 1) * box_l.surface_area() + (root->range - i - 1) * box_r.surface_area();
 
-	for (size_t i = 0; i < root->range; i++) {
-
-		auto cur = primitives[root->start + i];
-
-		box_l.expand(cur->get_bbox());
-		box_r = rest_bbox(root, i + 1, root->range);
-		cost_cur = (i + 1) * box_l.surface_area() + (root->range - i - 1) * box_r.surface_area();
-
-		if (cost_min < 0 || cost_cur < cost_min) {
-			cost_min = cost_cur;
-			index_min = i;
-		}
-	}
-	*cost = cost_min;
-	*index = index_min;
-
+            if (cost_min < 0 || cost_cur < cost_min) {
+                cost_min = cost_cur;
+                index_min = i;
+            }
+        }
+        *cost = cost_min;
+        *index = index_min;
+    }
 }
 
+    // calculate the bbox for the rest of the primitive
 BBox BVHAccel::rest_bbox(BVHNode* root, size_t start, size_t end) {
-	BBox box;
+	BBox b;
 	for (size_t i = start; i < end; i++) {
-		auto cur = primitives[root->start + i];
-		box.expand(cur->get_bbox());
+		b.expand(primitives[root->start + i]->get_bbox());
 	}
-	return box;
+	return b;
 }
 
-bool BVHAccel::intersect_helper(BVHNode* root, const Ray &ray, Intersection *i) const {
-
-	//cout << "intersection helper" << endl;
+bool BVHAccel::intersect_recursive(BVHNode* root, const Ray &ray, Intersection *i) const {
 	double t0, t1;
 	bool hit = false;
 
@@ -211,52 +217,45 @@ bool BVHAccel::intersect_helper(BVHNode* root, const Ray &ray, Intersection *i) 
 	if (t0 > i->t) return false;
 
 	if (root->isLeaf()) {
-		//cout << "leaf" << endl;
-		bool hit_cur;
-		Intersection i_cur;
+		bool hit_this;
+		Intersection i_this;
 
 		for (size_t j = 0; j < root->range; j++) {
-
-			hit_cur = primitives[root->start + j]->intersect(ray, &i_cur);
-
-			if (hit_cur && (i_cur.t < i->t) && (i_cur.t <= ray.max_t) && (i_cur.t >= ray.min_t)) {
-				//cout << "should be true" << endl;
+			hit_this = primitives[root->start + j]->intersect(ray, &i_this);
+			if (hit_this && (i_this.t < i->t) && (i_this.t <= ray.max_t) && (i_this.t >= ray.min_t)) {
+                *i = i_this;
 				hit = true;
-				*i = i_cur;
 			}
 		}
 	}
 	else {
-		double t_left0, t_left1, t_right0, t_right1;
-		double t_second;
+		double t_left0, t_left1, t_right0, t_right1, t_second;
 		BVHNode* first;
 		BVHNode* second;
-		bool hit_temp;
+		bool hit_temp = false;
 
 		root->l->bb.intersect(ray, t_left0, t_left1);
 		root->r->bb.intersect(ray, t_right0, t_right1);
 
-		if (t_left0 <= t_right0) {
-			first = root->l;
-			second = root->r;
-			t_second = t_right0;
+		if (t_left0 >= t_right0) {
+            first = root->r;
+            second = root->l;
+            t_second = t_left0;
 		}
 		else {
-			first = root->r;
-			second = root->l;
-			t_second = t_left0;
+            first = root->l;
+            second = root->r;
+            t_second = t_right0;
 		}
 
-		hit = intersect_helper(first, ray, i);
+		hit = intersect_recursive(first, ray, i);
 		if (t_second < i->t) {
-			hit_temp = intersect_helper(second, ray, i);
+			hit_temp = intersect_recursive(second, ray, i);
 		}
 		if (hit_temp) {
 			hit = hit_temp;
 		}
-		//cout << "hit: " << hit << endl;
 	}
-	//cout << "hit: " << hit << endl;
 	return hit;
 }
 

@@ -117,9 +117,9 @@ class BVHAccel : public Aggregate {
   /* helper functions */
   void construct_bvh(BVHNode* root, size_t max_leaf_size);
   bool eval(BVHNode* root, size_t* split_index);
-  void eval_helper(BVHNode* root, double* cost, size_t* index);
+  void eval_cost(BVHNode* root, double* cost, size_t* index);
   BBox rest_bbox(BVHNode* root, size_t start, size_t end);
-  bool intersect_helper(BVHNode* root, const Ray &ray, Intersection *i) const;
+  bool intersect_recursive(BVHNode* root, const Ray &ray, Intersection *i) const;
 
  private:
   BVHNode* root;  ///< root node of the BVH

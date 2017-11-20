@@ -48,13 +48,22 @@ Spectrum DiffuseBSDF::sample_f(const Vector3D& wo, Vector3D* wi, float* pdf) {
 // Mirror BSDF //
 
 Spectrum MirrorBSDF::f(const Vector3D& wo, const Vector3D& wi) {
-  return Spectrum();
+    Vector3D w_in;
+    reflect(wo, &w_in);
+    if (w_in == wi) {
+        return reflectance*(1/wo.z);
+    }
+    else {
+        return Spectrum();
+    }
 }
 
 Spectrum MirrorBSDF::sample_f(const Vector3D& wo, Vector3D* wi, float* pdf) {
   // TODO (PathTracer):
   // Implement MirrorBSDF
-  return Spectrum();
+    reflect(wo, wi);
+    *pdf = 1;
+    return reflectance*(1/wo.z);
 }
 
 // Glossy BSDF //
@@ -73,14 +82,22 @@ Spectrum GlossyBSDF::sample_f(const Vector3D& wo, Vector3D* wi, float* pdf) {
 // Refraction BSDF //
 
 Spectrum RefractionBSDF::f(const Vector3D& wo, const Vector3D& wi) {
-  return Spectrum();
+    Vector3D w_in;
+    if (refract(wo, &w_in, ior)) {
+        if (w_in == wi) {
+            return transmittance*(1/abs_cos_theta(wo));
+        }
+    }
+    return Spectrum();
 }
 
 Spectrum RefractionBSDF::sample_f(const Vector3D& wo, Vector3D* wi,
                                   float* pdf) {
   // TODO (PathTracer):
   // Implement RefractionBSDF
-  return Spectrum();
+    refract(wo, wi, ior);
+    *pdf = 1;
+    return f(wo, *wi);
 }
 
 // Glass BSDF //
@@ -93,12 +110,40 @@ Spectrum GlassBSDF::sample_f(const Vector3D& wo, Vector3D* wi, float* pdf) {
   // TODO (PathTracer):
   // Compute Fresnel coefficient and either reflect or refract based on it.
 
-  return Spectrum();
+    if (!refract(wo, wi, ior)) {
+        *pdf = 1;
+        reflect(wo, wi);
+        return reflectance*(1/cos_theta(wo));
+    } else {
+        double r0, r;
+        if (cos_theta(wo) > 0) {
+            r0 = pow((1-ior),2)/pow((1+ior),2);
+        } else {
+            r0 = pow((ior-1),2)/pow((1+ior),2);
+        }
+        r = r0 + (1-r0)*pow((1-abs_cos_theta(wo)), 5);
+        r = clamp(r, 0, 1);
+        if (((float)rand()) / ((float)RAND_MAX) < r) {
+            *pdf = r;
+            reflect(wo, wi);
+            return r*reflectance*(1/abs_cos_theta(*wi));
+        } else {
+            *pdf = 1-r;
+            // refract(wo, wi, ior);
+            if (cos_theta(wo) > 0) {
+                // printf("%f and %f\n",ior*ior, abs_cos_theta(*wi));
+                return (1-r)*transmittance*(1/abs_cos_theta(*wi));
+            } else {
+                return (1-r)*transmittance*(ior*ior)*(1/abs_cos_theta(*wi));
+            }
+        }
+    }
 }
 
 void BSDF::reflect(const Vector3D& wo, Vector3D* wi) {
   // TODO (PathTracer):
   // Implement reflection of wo about normal (0,0,1) and store result in wi.
+    *wi = Vector3D(0., 0., 2*(wo.z)) - wo;
 }
 
 bool BSDF::refract(const Vector3D& wo, Vector3D* wi, float ior) {
@@ -109,7 +154,27 @@ bool BSDF::refract(const Vector3D& wo, Vector3D* wi, float ior) {
   // ray entering the surface through vacuum.
 
 
-  return true;
+    if (cos_theta(wo) > 0) {
+        // enter in the surface
+        *wi = Vector3D(-sin_theta(wo)*cos_phi(wo)/ior,
+                       -sin_theta(wo)*sin_phi(wo)/ior,
+                       -sqrt(1 - sin_theta(wo)*sin_theta(wo)/(ior*ior)));
+        if (sin_theta(wo) >= ior) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        // from material to air
+        *wi = Vector3D(-sin_theta(wo)*cos_phi(wo)*ior,
+                       -sin_theta(wo)*sin_phi(wo)*ior,
+                       sqrt(1 - sin_theta(wo)*sin_theta(wo)*(ior*ior)));
+        if (ior*sin_theta(wo) >= 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 // Emission BSDF //

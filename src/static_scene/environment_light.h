@@ -5,8 +5,7 @@
 #include "../image.h"
 #include "scene.h"
 
-namespace CMU462 {
-namespace StaticScene {
+namespace CMU462 { namespace StaticScene {
 
 // An environment light can be thought of as an infinitely big sphere centered
 // around your scene, radiating light on the scene in a pattern matching some
@@ -42,12 +41,16 @@ class EnvironmentLight : public SceneLight {
    *   environment map horizontally? What about vertically?).
    */
   Spectrum sample_dir(const Ray& r) const;
+  Spectrum bilinear_inter(double x_cord, double y_cord) const;
+  size_t binary_search_vector(size_t begin, size_t end, double value, const std::vector<double>* start) const;
 
  private:
   const HDRImageBuffer* envMap;
-};  // class EnvironmentLight
+  std::vector<double> p_phi_theta;
+  std::vector<double> p_theta;
+}; // class EnvironmentLight
 
-}  // namespace StaticScene
-}  // namespace CMU462
+} // namespace StaticScene
+} // namespace CMU462
 
-#endif  // CMU462_STATICSCENE_ENVIRONMENTLIGHT_H
+#endif //CMU462_STATICSCENE_ENVIRONMENTLIGHT_H

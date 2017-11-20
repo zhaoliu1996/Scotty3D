@@ -419,7 +419,7 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
   // indirect lighting components calculated in the code below. The starter
   // code overwrites L_out by (.5,.5,.5) so that you can test your geometry
   // queries before you implement path tracing.
-  L_out = Spectrum(5.f, 5.f, 5.f);
+  //L_out = Spectrum(5.f, 5.f, 5.f);
 
   Vector3D hit_p = r.o + r.d * isect.t;
   Vector3D hit_n = isect.n;
@@ -472,7 +472,16 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
         // TODO (PathTracer):
         // (Task 4) Construct a shadow ray and compute whether the intersected surface is
         // in shadow. Only accumulate light if not in shadow.
-        L_out += (cos_theta / (num_light_samples * pr)) * f * light_L;
+          Ray shadow_ray = Ray(hit_p + (double)EPS_D*dir_to_light, dir_to_light, (double)(dist_to_light)-EPS_D, 0);
+          bool shadow_yes;
+          Intersection shadow_inter;
+          shadow_inter.t = (double)dist_to_light - EPS_D;
+          shadow_ray.min_t = EPS_D;
+          shadow_yes = bvh->intersect(shadow_ray, &shadow_inter);
+          if (!shadow_yes)
+          {
+              L_out = L_out + f*(float)cos_theta*(1.f / (float)pr)*(1.0 / (double)num_light_samples)*light_L;
+          }
       }
     }
   }

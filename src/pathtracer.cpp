@@ -24,7 +24,7 @@ using std::max;
 
 namespace CMU462 {
 
-#define ENABLE_RAY_LOGGING 1
+//#define ENABLE_RAY_LOGGING 1
 
 PathTracer::PathTracer(size_t ns_aa, size_t max_ray_depth, size_t ns_area_light,
                        size_t ns_diff, size_t ns_glsy, size_t ns_refr,
@@ -502,7 +502,29 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
   // (3) evaluate weighted reflectance contribution due 
   // to light from this direction
 
-  return L_out;
+    Vector3D w_in_il;
+    float pdf_il;
+    
+    //Incident sample
+    Spectrum il = isect.bsdf->sample_f(w_out, &w_in_il, &pdf_il);
+    
+    //Changing to world coordinate
+    w_in_il = o2w*w_in_il;
+    w_in_il.unit();
+    //Defining ray to be traced
+    Ray ray_il(hit_p + EPS_D*w_in_il, w_in_il, INF_D, r.depth + 1);
+
+    float terminateProbability = clamp((1.0 - il.illum()), 0. , 1.);
+    
+    
+    //cout << terminateProbability << endl;
+    //Russian roulette and depth test
+    if (((float)rand()) / ((float)RAND_MAX) < terminateProbability || r.depth > max_ray_depth)
+    {
+        return L_out;
+    }
+    
+    return L_out + ((il*trace_ray(ray_il) * fabs((float)dot(w_in_il, isect.n))) *(1.f / (pdf_il*(1.f - terminateProbability))));
 }
 
     Spectrum PathTracer::raytrace_pixel(size_t x, size_t y) {

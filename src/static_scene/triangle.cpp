@@ -13,8 +13,11 @@ Triangle::Triangle(const Mesh* mesh, size_t v1, size_t v2, size_t v3)
 BBox Triangle::get_bbox() const {
   // TODO (PathTracer):
   // compute the bounding box of the triangle
-
-  return BBox();
+    Vector3D p1(mesh->positions[v1]), p2(mesh->positions[v2]), p3(mesh->positions[v3]);
+    BBox a(p1);
+    a.expand(p2);
+    a.expand(p3);
+    return a;
 }
 
 bool Triangle::intersect(const Ray& r) const {

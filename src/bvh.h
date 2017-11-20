@@ -89,7 +89,7 @@ class BVHAccel : public Aggregate {
    * \return true if the given ray intersects with the aggregate,
              false otherwise
    */
-  bool intersect(const Ray& r, Intersection* i) const;
+  bool intersect(const Ray& r, Intersection* isect) const;
 
   /**
    * Get BSDF of the surface material
@@ -114,8 +114,37 @@ class BVHAccel : public Aggregate {
    */
   void drawOutline(const Color& c) const {}
 
+  /* helper functions */
+  void construct_bvh(BVHNode* root, size_t max_leaf_size);
+  bool eval(BVHNode* root, size_t* split_index);
+  void eval_helper(BVHNode* root, double* cost, size_t* index);
+  BBox rest_bbox(BVHNode* root, size_t start, size_t end);
+  bool intersect_helper(BVHNode* root, const Ray &ray, Intersection *i) const;
+
  private:
   BVHNode* root;  ///< root node of the BVH
+};
+
+struct sort_xdir
+{
+	inline bool operator ()(Primitive* i, Primitive* j)
+	{
+		return (i->get_bbox().centroid().x < j->get_bbox().centroid().x);
+	}
+};
+struct sort_ydir
+{
+	inline bool operator ()(Primitive* i, Primitive* j)
+	{
+		return (i->get_bbox().centroid().y < j->get_bbox().centroid().y);
+	}
+};
+struct sort_zdir
+{
+	inline bool operator ()(Primitive* i, Primitive* j)
+	{
+		return (i->get_bbox().centroid().z < j->get_bbox().centroid().z);
+	}
 };
 
 }  // namespace StaticScene

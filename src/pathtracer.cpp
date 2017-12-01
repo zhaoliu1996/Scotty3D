@@ -24,7 +24,7 @@ using std::max;
 
 namespace CMU462 {
 
-//#define ENABLE_RAY_LOGGING 1
+#define ENABLE_RAY_LOGGING 1
 
 PathTracer::PathTracer(size_t ns_aa, size_t max_ray_depth, size_t ns_area_light,
                        size_t ns_diff, size_t ns_glsy, size_t ns_refr,
@@ -404,10 +404,6 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
     // TODO (PathTracer):
     // (Task 7) If you have an environment map, return the Spectrum this ray
     // samples from the environment map. If you don't return black.
-      if (envLight != NULL)
-      {
-          return envLight->sample_dir(r);
-      }
       return Spectrum(0., 0., 0.);
   }
 
@@ -477,13 +473,12 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
         // (Task 4) Construct a shadow ray and compute whether the intersected surface is
         // in shadow. Only accumulate light if not in shadow.
           Ray shadow_ray = Ray(hit_p + (double)EPS_D*dir_to_light, dir_to_light, (double)(dist_to_light)-EPS_D, 0);
-          bool shadow_yes;
-          Intersection shadow_inter;
-          shadow_inter.t = (double)dist_to_light - EPS_D;
+          bool shadow;
+          Intersection ii;
+          ii.t = (double)dist_to_light - EPS_D;
           shadow_ray.min_t = EPS_D;
-          shadow_yes = bvh->intersect(shadow_ray, &shadow_inter);
-          if (!shadow_yes)
-          {
+          shadow = bvh->intersect(shadow_ray, &ii);
+          if (!shadow){
               L_out = L_out + f*(float)cos_theta*(1.f / (float)pr)*(1.0 / (double)num_light_samples)*light_L;
           }
       }
@@ -512,19 +507,16 @@ Spectrum PathTracer::trace_ray(const Ray &r) {
     //Incident sample
     Spectrum il = isect.bsdf->sample_f(w_out, &w_in_il, &pdf_il);
     
-    //Changing to world coordinate
+    //Change from origin to world coordinate
     w_in_il = o2w*w_in_il;
     w_in_il.unit();
-    //Defining ray to be traced
+    //Define ray to be traced
     Ray ray_il(hit_p + EPS_D*w_in_il, w_in_il, INF_D, r.depth + 1);
 
     float terminateProbability = clamp((1.0 - il.illum()), 0. , 1.);
     
-    
-    //cout << terminateProbability << endl;
     //Russian roulette and depth test
-    if (((float)rand()) / ((float)RAND_MAX) < terminateProbability || r.depth > max_ray_depth)
-    {
+    if (((float)rand()) / ((float)RAND_MAX) < terminateProbability || r.depth > max_ray_depth){
         return L_out;
     }
     

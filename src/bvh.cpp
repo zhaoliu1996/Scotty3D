@@ -35,9 +35,8 @@ BVHAccel::BVHAccel(const std::vector<Primitive *> &_primitives,
 BVHAccel::~BVHAccel() {
   // TODO (PathTracer):
   // Implement a proper destructor for your BVH accelerator aggregate
-	if (root) {
-		delete root;
-	}
+    // I don't think I should write my BVHAceel destructor
+    
 }
 
 BBox BVHAccel::get_bbox() const { return root->bb; }
